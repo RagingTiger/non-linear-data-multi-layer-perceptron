@@ -15,14 +15,16 @@
  * =============================================================================
  */
 
-import {TRAINING_DATA} from 'https://storage.googleapis.com/jmstore/TensorFlowJS/EdX/TrainingData/real-estate-data.js';
+// Generate input numbers from 1 to 20 inclusive.
+const INPUTS = [];
+for (let n = 1; n <= 20; n++) {
+	INPUTS.push(n * n);
+}
 
-// Inputs
-const INPUTS = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
-
-// Current listed house prices in dollars given their features above (target output values you want to predict).
+// Generate Outputs that are simply each input multiplied by itself,
+// to generate some non linear data.
 const OUTPUTS = [];
-for (n = 0; n < INPUTS.length; n++) {
+for (let n = 0; n < INPUTS.length; n++) {
 	OUTPUTS.push(INPUTS[n] * INPUTS[n]);
 }
 
