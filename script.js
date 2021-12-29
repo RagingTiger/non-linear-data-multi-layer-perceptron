@@ -79,9 +79,12 @@ INPUTS_TENSOR.dispose();
 // Now actually create and define model architecture.
 const model = tf.sequential();
 
-// We will use one dense layer with 1 neuron (units) and an input of 
+// We will use one dense layer with 100 neuron (units) and an input of 
 // 1 input feature values.
-model.add(tf.layers.dense({inputShape: [1], units: 200, activation: 'relu'}));
+model.add(tf.layers.dense({inputShape: [1], units: 100, activation: 'relu'}));
+// Add a new hidden layer with 100 neurons, and ReLU activation.
+model.add(tf.layers.dense({units: 100, activation: 'relu'}));
+// Add another dense layer with 1 neuron that will be connected to the previous hidden layer.
 model.add(tf.layers.dense({units: 1}));
 
 model.summary();
