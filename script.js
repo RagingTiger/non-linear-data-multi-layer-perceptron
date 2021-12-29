@@ -81,7 +81,8 @@ const model = tf.sequential();
 
 // We will use one dense layer with 1 neuron (units) and an input of 
 // 1 input feature values.
-model.add(tf.layers.dense({inputShape: [1], units: 1}));
+model.add(tf.layers.dense({inputShape: [1], units: 3}));
+model.add(tf.layers.dense({units: 1}));
 
 model.summary();
 
@@ -110,8 +111,7 @@ async function train() {
   FEATURE_RESULTS.NORMALIZED_VALUES.dispose();
   
   console.log("Average error loss: " + Math.sqrt(results.history.loss[results.history.loss.length - 1]));
-  console.log("Average validation error loss: " + Math.sqrt(results.history.val_loss[results.history.val_loss.length - 1]));
-    
+  
   // Once trained we can evaluate the model.
   evaluate();
 }
