@@ -18,7 +18,7 @@
 // Generate input numbers from 1 to 20 inclusive.
 const INPUTS = [];
 for (let n = 1; n <= 20; n++) {
-	INPUTS.push(n * n);
+	INPUTS.push(n);
 }
 
 // Generate Outputs that are simply each input multiplied by itself,
@@ -28,10 +28,10 @@ for (let n = 0; n < INPUTS.length; n++) {
 	OUTPUTS.push(INPUTS[n] * INPUTS[n]);
 }
 
-// Input feature Array of Arrays needs 2D tensor to store.
-const INPUTS_TENSOR = tf.tensor2d(INPUTS);
+// Input feature Array is 1 dimensional.
+const INPUTS_TENSOR = tf.tensor1d(INPUTS);
 
-// Output can stay 1 dimensional.
+// Output feature Array is 1 dimensional.
 const OUTPUTS_TENSOR = tf.tensor1d(OUTPUTS);
 
 
@@ -80,8 +80,8 @@ INPUTS_TENSOR.dispose();
 const model = tf.sequential();
 
 // We will use one dense layer with 1 neuron (units) and an input of 
-// 2 input feaature values (representing house size and number of rooms).
-model.add(tf.layers.dense({inputShape: [2], units: 1}));
+// 1 input feature values.
+model.add(tf.layers.dense({inputShape: [1], units: 1}));
 
 model.summary();
 
@@ -121,7 +121,7 @@ async function train() {
 function evaluate() {
   // Predict answer for a single piece of data.
   tf.tidy(function() {
-    let newInput = normalize(tf.tensor2d([[750, 1]]), FEATURE_RESULTS.MIN_VALUES, FEATURE_RESULTS.MAX_VALUES);
+    let newInput = normalize(tf.tensor1d([7]), FEATURE_RESULTS.MIN_VALUES, FEATURE_RESULTS.MAX_VALUES);
 
     let output = model.predict(newInput.NORMALIZED_VALUES);
     output.print();
