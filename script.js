@@ -17,11 +17,14 @@
 
 import {TRAINING_DATA} from 'https://storage.googleapis.com/jmstore/TensorFlowJS/EdX/TrainingData/real-estate-data.js';
 
-// Input feature pairs (House size, Number of Bedrooms)
-const INPUTS = TRAINING_DATA.inputs;
+// Inputs
+const INPUTS = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
 
 // Current listed house prices in dollars given their features above (target output values you want to predict).
-const OUTPUTS = TRAINING_DATA.outputs;
+const OUTPUTS = [];
+for (n = 0; n < INPUTS.length; n++) {
+	OUTPUTS.push(INPUTS[n] * INPUTS[n]);
+}
 
 // Input feature Array of Arrays needs 2D tensor to store.
 const INPUTS_TENSOR = tf.tensor2d(INPUTS);
@@ -122,15 +125,7 @@ function evaluate() {
     output.print();
   });
   
-  // Should show 5 Tensors left in memory incase you want to perform more predictions.
-  // 2 Tensors store the min/max values for each of the 2 input features which you will need to normalize new inputs.
-  // 3 Tensors make up the model itself that was trained (3 trainable params?).
-  
-  console.log(tf.memory().numTensors); // Expected 5 but got 6.
-  
   FEATURE_RESULTS.MIN_VALUES.dispose();
   FEATURE_RESULTS.MAX_VALUES.dispose();
   model.dispose();
-  
-  console.log(tf.memory().numTensors); // Expecting 0 but getting 2!
 }
