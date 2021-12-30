@@ -138,4 +138,7 @@ function evaluate() {
 
 function logProgress(epoch, logs) {
   console.log('Data for epoch ' + epoch, Math.sqrt(logs.loss));
+  if (epoch == 70) {
+    //OPTIMIZER.setLearningRate(LEARNING_RATE / 10);
+  }
 }
