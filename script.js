@@ -108,12 +108,7 @@ async function train() {
     shuffle: true, // Ensure data is shuffled before using in case it was in an order
     batchSize: 2,        
     epochs: 200,    // Go over the data 200 times!
-    callbacks: {onEpochEnd: function logProgress(epoch, logs) {
-      console.log('Data for epoch ' + epoch, Math.sqrt(logs.loss));
-      if (epoch == 70) {
-        //OPTIMIZER.setLearningRate(LEARNING_RATE / 10);
-      }
-    }}
+    callbacks: {onEpochEnd: logProgress}
   });
   
   OUTPUTS_TENSOR.dispose();
@@ -138,4 +133,12 @@ function evaluate() {
   FEATURE_RESULTS.MIN_VALUES.dispose();
   FEATURE_RESULTS.MAX_VALUES.dispose();
   model.dispose();
+}
+
+
+function logProgress(epoch, logs) {
+  console.log('Data for epoch ' + epoch, Math.sqrt(logs.loss));
+  if (epoch == 70) {
+    OPTIMIZER.setLearningRate(LEARNING_RATE / 10);
+  }
 }
