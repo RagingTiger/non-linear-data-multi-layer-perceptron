@@ -80,9 +80,9 @@ INPUTS_TENSOR.dispose();
 const model = tf.sequential();
 // We will use one dense layer with 20 neuron (units) and an input of 
 // 1 input feature values.
-model.add(tf.layers.dense({inputShape: [1], units: 100, activation: 'relu'}));
+model.add(tf.layers.dense({inputShape: [1], units: 25, activation: 'relu'}));
 // Add a new hidden layer with 5 neurons, and ReLU activation.
-model.add(tf.layers.dense({units: 100, activation: 'relu'}));
+model.add(tf.layers.dense({units: 5, activation: 'relu'}));
 // Add another dense layer with 1 neuron that will be connected to the previous hidden layer.
 model.add(tf.layers.dense({units: 1}));
 
@@ -107,7 +107,7 @@ async function train() {
   let results = await model.fit(FEATURE_RESULTS.NORMALIZED_VALUES, OUTPUTS_TENSOR, {
     shuffle: true, // Ensure data is shuffled before using in case it was in an order
     batchSize: 2,        
-    epochs: 80,    // Go over the data 80 times!
+    epochs: 200,    // Go over the data 80 times!
     callbacks: {onEpochEnd: logProgress}
   });
   
