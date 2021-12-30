@@ -89,7 +89,7 @@ model.add(tf.layers.dense({units: 1}));
 model.summary();
 
 // Choose a learning rate that is suitable for the data we are using.
-const LEARNING_RATE = 0.001;
+const LEARNING_RATE = 0.0001;
 const OPTIMIZER = tf.train.sgd(LEARNING_RATE);
 
 train();
@@ -139,6 +139,6 @@ function evaluate() {
 function logProgress(epoch, logs) {
   console.log('Data for epoch ' + epoch, Math.sqrt(logs.loss));
   if (epoch == 70) {
-    //OPTIMIZER.setLearningRate(LEARNING_RATE / 10);
+    OPTIMIZER.setLearningRate(LEARNING_RATE / 2);
   }
 }
