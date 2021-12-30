@@ -107,7 +107,8 @@ async function train() {
   let results = await model.fit(FEATURE_RESULTS.NORMALIZED_VALUES, OUTPUTS_TENSOR, {
     shuffle: true, // Ensure data is shuffled before using in case it was in an order
     batchSize: 2,        
-    epochs: 200    // Go over the data 200 times!
+    epochs: 200,    // Go over the data 200 times!
+    callbacks: {onEpochEnd: logProgress}
   });
   
   OUTPUTS_TENSOR.dispose();
@@ -132,4 +133,9 @@ function evaluate() {
   FEATURE_RESULTS.MIN_VALUES.dispose();
   FEATURE_RESULTS.MAX_VALUES.dispose();
   model.dispose();
+}
+
+
+function logProgress(epoch, logs) {
+  console.log('Accuracy', logs);
 }
