@@ -88,17 +88,18 @@ model.add(tf.layers.dense({units: 1}));
 
 model.summary();
 
+// Choose a learning rate that is suitable for the data we are using.
+const LEARNING_RATE = 0.0001;
+const OPTIMIZER = tf.train.sgd(LEARNING_RATE);
+
 train();
 
 
-async function train() {
-  // Choose a learning rate that is suitable for the data we are using.
-  const LEARNING_RATE = 0.0001;
-  
+async function train() { 
   // Compile the model with the defined learning rate and specify
   // our loss function to use.
   model.compile({
-    optimizer: tf.train.sgd(LEARNING_RATE),
+    optimizer: OPTIMIZER,
     loss: 'meanSquaredError'
   });
 
