@@ -80,7 +80,7 @@ INPUTS_TENSOR.dispose();
 const model = tf.sequential();
 // We will use one dense layer with 20 neuron (units) and an input of 
 // 1 input feature values.
-model.add(tf.layers.dense({inputShape: [1], units: 20, activation: 'relu'}));
+model.add(tf.layers.dense({inputShape: [1], units: 3}));
 // Add a new hidden layer with 5 neurons, and ReLU activation.
 model.add(tf.layers.dense({units: 5, activation: 'relu'}));
 // Add another dense layer with 1 neuron that will be connected to the previous hidden layer.
@@ -89,7 +89,7 @@ model.add(tf.layers.dense({units: 1}));
 model.summary();
 
 // Choose a learning rate that is suitable for the data we are using.
-const LEARNING_RATE = 0.0001;
+const LEARNING_RATE = 0.001;
 const OPTIMIZER = tf.train.sgd(LEARNING_RATE);
 
 train();
