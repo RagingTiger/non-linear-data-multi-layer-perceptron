@@ -114,7 +114,7 @@ async function train() {
   OUTPUTS_TENSOR.dispose();
   FEATURE_RESULTS.NORMALIZED_VALUES.dispose();
   
-  console.log("Average error loss: " + Math.sqrt(results.history.loss[results.history.loss.length - 1]));
+  console.log("Final Average error loss: " + Math.sqrt(results.history.loss[results.history.loss.length - 1]));
   
   // Once trained we can evaluate the model.
   evaluate();
@@ -137,5 +137,5 @@ function evaluate() {
 
 
 function logProgress(epoch, logs) {
-  console.log('Accuracy', logs);
+  console.log('Data for epoch ' + epoch, logs);
 }
