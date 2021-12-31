@@ -25,14 +25,14 @@ for (let n = 1; n <= 20; n++) {
 // to generate some non linear data.
 const OUTPUTS = [];
 for (let n = 0; n < INPUTS.length; n++) {
-	OUTPUTS.push(INPUTS[n] * INPUTS[n]);
+	OUTPUTS.push([INPUTS[n] * INPUTS[n], INPUTS[n]]);
 }
 
 // Input feature Array is 1 dimensional.
 const INPUTS_TENSOR = tf.tensor1d(INPUTS);
 
 // Output feature Array is 1 dimensional.
-const OUTPUTS_TENSOR = tf.tensor1d(OUTPUTS);
+const OUTPUTS_TENSOR = tf.tensor2d(OUTPUTS);
 
 
 // Function to take a Tensor and normalize values
@@ -84,7 +84,7 @@ model.add(tf.layers.dense({inputShape: [1], units: 25, activation: 'relu'}));
 // Add a new hidden layer with 5 neurons, and ReLU activation.
 model.add(tf.layers.dense({units: 5, activation: 'relu'}));
 // Add another dense layer with 1 neuron that will be connected to the previous hidden layer.
-model.add(tf.layers.dense({units: 1}));
+model.add(tf.layers.dense({units: 2}));
 
 model.summary();
 
