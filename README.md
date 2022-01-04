@@ -1,4 +1,4 @@
-TensorFlow.js Single Neuron Linear Regression for house price given size and bedroom count
+TensorFlow.js Multiple Neuron Non Linear Regression to learn y = x ^ 2
 =================
 
-Example showing how to train a custom model to predict house prices given sqft and bedrooms (multiple inputs) using a single artificial neuron without activation function using TensorFlow.js
+Learning from non linear data with activation functions and multiple neurons.

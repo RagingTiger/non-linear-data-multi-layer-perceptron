@@ -105,7 +105,7 @@ async function train() {
 
   // Finally do the training itself 
   let results = await model.fit(FEATURE_RESULTS.NORMALIZED_VALUES, OUTPUTS_TENSOR, {
-    shuffle: true, // Ensure data is shuffled before using in case it was in an order
+    shuffle: true, // Ensure data is shuffled again before using each epoch.
     batchSize: 2,        
     epochs: 200,    // Go over the data 80 times!
     callbacks: {onEpochEnd: logProgress}
